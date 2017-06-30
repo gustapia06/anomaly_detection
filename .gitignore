@@ -1,0 +1,5 @@
+# make git not trace files
+.DS_Store
+./log_input/.DS_Store
+./log_output/.DS_Store
+./src/.DS_Store
