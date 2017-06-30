@@ -3,6 +3,5 @@
 ./log_input/.DS_Store
 ./log_output/.DS_Store
 ./src/.DS_Store
-./log_input/batch_log.json
-./log_input/stream_log.json
-./log_output/flagged_purchases.json
+./log_input/*
+./log_output/*
