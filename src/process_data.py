@@ -5,10 +5,38 @@
 import networkx as nx
 import numpy as np
 import pandas as pd
+import sys
 import timeit
 
-start_time = timeit.default_timer()
 #######
+def check_versions():
+    # check python version
+    need_ver = {'py': [3,5,1], 'np': [1,12,1], 'pd': [0,19,2], 'nx': [1,11]}
+    try:
+        sys_ver = {'py': sys.version.split(' ')[0].split('.'), 'np': np.__version__.split('.'),
+            'pd': pd.__version__.split('.'), 'nx': nx.__version__.split('.')}
+    except:
+        # if packages are not found
+        raise VersionError('Needed packages could not be found')
+
+    for pack in need_ver.keys():
+        for i in range(len(need_ver[pack])):
+            if sys_ver[pack][i] == '':
+                sys_ver[pack][i] = '0'
+
+            if int(sys_ver[pack][i]) < need_ver[pack][i]:
+                raise VersionError('Check installed versions to be able to succesfully run the code')
+            elif int(sys_ver[pack][i]) > need_ver[pack][i]:
+                # no need to check next values
+                break
+
+class VersionError(Exception):
+    def __init__(self, msg):
+        self.msg = msg
+    def __str__(self):
+        return repr(self.msg)
+
+
 # set corresponding types of data
 def setDtypes(data):
     if isinstance(data,pd.core.frame.DataFrame):
@@ -70,13 +98,17 @@ def flagPurchase(event,mean_val,std_val):
 
 #def main():
 #################
+# check versions
+check_versions()
+
+#################
 # file names
 global hist_data_name
 global stream_data_name
 global flagged_data_name
-hist_data_name = './log_input/batch_log.json'
-stream_data_name = './log_input/stream_log.json'
-flagged_data_name = './log_output/flagged_purchases.json'
+hist_data_name = sys.argv[1]
+stream_data_name = sys.argv[2]
+flagged_data_name = sys.argv[3]
 
 #################
 # load historically data from ./log_input/batch_log.json
@@ -130,10 +162,14 @@ for idx,event in hist_data.loc[hist_data['event_type'] != 'purchase'].iterrows()
             print('Trying to remove a non-existent edge')
             pass
 
+print(len(MKTT.nodes()))
+
 ##################
 # drop unnecessary friedship information since the graph has been created already
 hist_data = hist_data.drop(hist_data.index[(hist_data['event_type'].isin({'befriend','unfriend'}))])
 
+
+start_time = timeit.default_timer()
 ##################
 # once the network graph is created, start the stream of new data
 # load historically data from ./log_input/batch_log.json
