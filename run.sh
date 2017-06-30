@@ -1,3 +1,11 @@
 #!/bin/bash
 
-python ./src/process_log.py ./log_input/batch_log.json ./log_input/stream_log.json ./log_output/flagged_purchases.json
+echo " *******************************************"
+echo " *   Insight Data Science Code Challenge   *"
+echo " *                                         *"
+echo " *  Prepared by Gustavo Tapia              *"
+echo " *  Date: 6/30/2017                        *"
+echo " *                                         *"
+echo " *******************************************"
+
+./src/run_recommendation.sh
