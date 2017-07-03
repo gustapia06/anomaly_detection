@@ -1,6 +1,15 @@
 #!/bin/bash
 
-
+echo ""
+echo ""
+echo " *******************************************"
+echo " *   Insight Data Science Code Challenge   *"
+echo " *                                         *"
+echo " *  Prepared by Gustavo Tapia              *"
+echo " *  Date: 6/30/2017                        *"
+echo " *                                         *"
+echo " *******************************************"
+echo ""
 echo "To successfully run the program, the system needs to have:"
 echo " - python 3.5.1 or greater"
 echo " - numpy 1.12.1 or greater"
@@ -9,26 +18,25 @@ echo " - networkx 1.11 or greater"
 echo ""
 echo " A check in the program will be carried out to see if the required software is present"
 echo ""
-echo ""
 
 
-# define file names
+# define data file names
 BATCH='./log_input/batch_log.json'
 STREAM='./log_input/stream_log.json'
 FLAGGED='./log_output/flagged_purchases.json'
 
-# check files are in place
+# check if files are in place
 for FILE in $BATCH $STREAM
 do
-    if [ ! -f $FILE ]
+    if [[ ! -f $FILE ]]
     then
-        echo "File $FILE exist. Aborting execution"
-        exit 0
+        echo "File $FILE does not exist. Aborting execution"
+        exit 1
     fi
 done
 
 # want to start from a new flagged_log file, so we'll delete any existing one
-if [ -f $FLAGGED ]
+if [[ -f $FLAGGED ]]
 then
     rm $FLAGGED
 fi

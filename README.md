@@ -1,18 +1,13 @@
 # Table of Contents
-1. [Challenge Summary](README.md#challenge-summary)
-2. [Details of Implementation](README.md#details-of-implementation)
-3. [Anomalous Purchases](README.md#anomalous-purchases)
-4. [Sample Data](README.md#sample-data)
-5. [Writing Clean, Scalable, and Well-tested Code](README.md#writing-clean-scalable-and-well-tested-code)
-6. [Repo Directory Structure](README.md#repo-directory-structure)
-7. [Testing your Directory Structure and Output Format](README.md#testing-your-directory-structure-and-output-format)
-8. [Instructions to Submit your Solution](README.md#instructions-to-submit-your-solution)
-9. [FAQ](README.md#faq)
+1. [Code Summary](README.md#code-summary)
+2. [Requirements](README.md#requirements)
+3. [Approach of Implementation](README.md#approach-of-implementation)
+4. [Instructions](README.md#instructions)
 
 
-# Challenge Summary
+# Code Summary
 
-Imagine you're at an e-commerce company, Market-ter, that also has a social network. In addition to shopping, users can see which items their friends are buying, and are influenced by the purchases within their network. 
+The present project proposes a solution for the Insight Data Science - Anomaly Detection challenge. The main objective is to create a recommendation system for data coming from an e-commerce and social network company that will be able to flag purchases that are deemed as important or above average, such that users can see which items their friends are buying, and are influenced by the purchases within their network. 
 
 Your challenge is to build a real-time platform to analyze purchases within a social network of users, and detect any behavior that is far from the average within that social network.
 
