@@ -97,7 +97,7 @@ The directory structure for this project looks like this:
             |       └── flagged_purchases.json
             └── your-own-test
                 ├── log_input
-                |    └── your-own-log.txt
+                |   └── your-own-log.txt
                 └-- log_output
                     └── flagged_purchases.json
 
