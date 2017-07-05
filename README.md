@@ -95,10 +95,17 @@ The directory structure for this project looks like this:
             |   |   └── stream_log.json
             |   └── log_output
             |       └── flagged_purchases.json
-            └── your-own-test
+            ├── test_2
+            |   ├── log_input
+            |   |   ├── batch_log.json
+            |   |   └── stream_log.json
+            |   └── log_output
+            |       └── flagged_purchases.json
+            └── test_3
                 ├── log_input
-                |   └── your-own-log.txt
-                └-- log_output
+                |   ├── batch_log.json
+                |   └── stream_log.json
+                └── log_output
                     └── flagged_purchases.json
 
 
