@@ -45,4 +45,12 @@ touch $FLAGGED
 
 
 # run the python script
-python3 ./src/process_data.py $BATCH $STREAM $FLAGGED
+PYTHON_CMD='python3'
+read -p "Warning: current python command is set to '$PYTHON_CMD'. If your python command is different please input it now. If it is the same, just press enter: " -t 7 PYTHON_CMD
+if [[ "$PYTHON_CMD" = '' ]]
+then
+PYTHON_CMD='python3'
+fi
+echo "Using $PYTHON_CMD"
+echo ""
+$PYTHON_CMD ./src/process_data.py $BATCH $STREAM $FLAGGED

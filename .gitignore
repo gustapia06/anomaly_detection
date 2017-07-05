@@ -2,4 +2,6 @@
 .DS_Store
 log_input/
 log_output/
+insight_testsuite/results.txt
+insight_testsuite/temp/
 src/.DS_Store

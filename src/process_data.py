@@ -28,8 +28,7 @@ def main():
         T = int(hist_data.loc[0,'T'])
         D = int(hist_data.loc[0,'D'])
     except:
-        print('Error: No D or T values found. Execution aborted')
-        return 0
+        raise ExecError('Error: No D or T values found. Execution aborted')
     
     #########################
     # clean historical data
@@ -51,8 +50,8 @@ def main():
             # add a exception in case we are trying to remove a non-existent friendship
             try:
                 MKTT.remove_edge(event['id1'],event['id2'])
-            except nx.exception.NetworkXError:
-                print('Trying to remove a non-existent edge')
+            except:
+                #print('Trying to remove a non-existent edge')
                 pass
 
     #########################
@@ -90,7 +89,7 @@ def main():
                 # add a exception in case we are trying to remove a non-existent friendship
                 try:
                     MKTT.remove_edge(event_temp['id1'],event_temp['id2'])
-                except nx.exception.NetworkXError:
+                except:
                     pass
 
         elif event['event_type'] == 'purchase':
@@ -146,7 +145,7 @@ def check_versions():
             'pd': pd.__version__.split('.'), 'nx': nx.__version__.split('.')}
     except:
         # if packages are not found
-        raise VersionError('Needed packages could not be found')
+        raise ExecError('Needed packages could not be found')
     
     #########################
     # iterate over each package
@@ -159,22 +158,13 @@ def check_versions():
             
             # if version is less, then raise an error
             if int(sys_ver[pack][i]) < need_ver[pack][i]:
-                raise VersionError('Check installed versions to be able to succesfully run the code')
+                raise ExecError('Check installed versions to be able to succesfully run the code')
             elif int(sys_ver[pack][i]) > need_ver[pack][i]:
                 # if major version is greater then no need to check other subversions
                 break
 
     # check passed
     print('Version check passed')
-
-
-##******************************************************
-# Define error class VersionError for checking versions of packages
-class VersionError(Exception):
-    def __init__(self, msg):
-        self.msg = msg
-    def __str__(self):
-        return repr(self.msg)
 
 
 ##******************************************************
@@ -285,6 +275,15 @@ def flagPurchase(event,mean_val,std_val):
     event_json = event.append(vals).astype('str').to_json()
     with open(flagged_data_name, 'a') as outfile:
         print(event_json, file = outfile)
+
+
+##******************************************************
+# Define error class ExecError for checking versions of packages
+class ExecError(Exception):
+    def __init__(self, msg):
+        self.msg = msg
+    def __str__(self):
+        return repr(self.msg)
 
 
 ##******************************************************
