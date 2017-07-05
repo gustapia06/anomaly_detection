@@ -1,7 +1,7 @@
 # Insight Data Challenge - Anomaly Detection
 # Gustavo Tapia
 
-
+#########################
 # load needed packages
 import networkx as nx
 import numpy as np
@@ -9,16 +9,14 @@ import pandas as pd
 import sys
 import timeit
 
-
 # Function definitions
 ##******************************************************
 # Main function
 def main():
-    
     #########################
     # check versions for required packages
     check_versions()
-
+    
     #########################
     # load historical data
     hist_data = pd.read_json(hist_data_name, lines=True, convert_dates = True)
@@ -137,6 +135,16 @@ def main():
 ##******************************************************
 # Check versions of packages
 def check_versions():
+    #########################
+    # ask if check needed
+    usercheck = input('Do you want the code to check the versions of packages? (yes or no): ')
+    if usercheck == 'no':
+        return 0
+    elif usercheck == 'yes':
+        print('Performing version check')
+    else:
+        print('Answer not identified. Performing version check')
+    
     #########################
     # dictionary of needed versions (py is python, np is numpy, pd is pandas, nx is networkx
     need_ver = {'py': [3,5,1], 'np': [1,12,1], 'pd': [0,19,2], 'nx': [1,11]}
@@ -289,7 +297,6 @@ class ExecError(Exception):
 ##******************************************************
 # main execution
 if __name__ == "__main__":
-    
     #########################
     # assign global file names
     global hist_data_name
