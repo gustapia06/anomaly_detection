@@ -74,6 +74,7 @@ Once all events from the streaming data have been analyzed, the code shows some 
 # Directory Structure
 
 The directory structure for this project looks like this:
+
     .
     ├── README.md 
     ├── run.sh
@@ -99,6 +100,7 @@ The directory structure for this project looks like this:
                 |    └── your-own-log.txt
                 └-- log_output
                     └── flagged_purchases.json
+
 
 # Instructions
 
